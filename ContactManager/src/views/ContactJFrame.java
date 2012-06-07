@@ -6,9 +6,13 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -22,6 +26,7 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import util.Validator;
 import viewModels.ContactListModel;
 
 import domain.Contact;
@@ -51,6 +56,12 @@ public class ContactJFrame extends javax.swing.JFrame {
 	private JTextField txtTelMobil;
 	private JTextField txtBirthDay;
 	
+	private JLabel namesErrorLabel;
+	private JLabel eMailErrorLabel;
+	private JLabel telOfficeErrorLabel;
+	private JLabel telMobileErrorLabel;
+	private JLabel birthDayErrorLabel;
+	
 	
 	//button
 	private JButton saveButton;
@@ -65,6 +76,9 @@ public class ContactJFrame extends javax.swing.JFrame {
 	private ContactListModel contactJListModel;
 	
 	private ContactChangedObserver contactChangedObserver = new ContactChangedObserver();
+	private FocusListener saveCecker =  new CheckSaveableFocusListener();
+	private final static ImageIcon errorIcon = new ImageIcon(ContactJFrame.class.getResource("/com/sun/java/swing/plaf/windows/icons/Error.gif"));
+
 
 	
 	private ContactStore contactStore;
@@ -76,6 +90,7 @@ public class ContactJFrame extends javax.swing.JFrame {
 		this.contactStore = contactStore;
 		this.contactStore.addObserver(contactChangedObserver); //update detail if list changes
 		contactJListModel = new ContactListModel(this.contactStore);
+
 		initGUI();
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -153,34 +168,79 @@ public class ContactJFrame extends javax.swing.JFrame {
 					}
 					{
 						txtName = new JTextField();
+						txtName.addFocusListener(saveCecker);
 						jPanel3.add(txtName, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
 						txtName.setEnabled(true);
 					}
 					{
 						txtFirstName = new JTextField();
+						txtFirstName.addFocusListener(saveCecker);
 						jPanel3.add(txtFirstName, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
 						txtFirstName.setEnabled(true);
 					}
 					{
 						txtEMail = new JTextField();
+						txtEMail.addFocusListener(saveCecker);
 						jPanel3.add(txtEMail, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
 						txtEMail.setEnabled(true);
 					}
 					{
 						txtTelOffice = new JTextField();
+						txtTelOffice.addFocusListener(saveCecker);
 						jPanel3.add(txtTelOffice, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
 						txtTelOffice.setEnabled(true);
 					}
 					{
 						txtTelMobil = new JTextField();
+						txtTelMobil.addFocusListener(saveCecker);
 						jPanel3.add(txtTelMobil, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
 						txtTelMobil.setEnabled(true);
 					}
 					{
 						txtBirthDay = new JTextField();
+						txtBirthDay.addFocusListener(saveCecker);
 						jPanel3.add(txtBirthDay, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
 						txtBirthDay.setEnabled(true);
 					}
+					{
+						namesErrorLabel = new JLabel(errorIcon);
+						namesErrorLabel.setVisible(false);
+						namesErrorLabel.setToolTipText("Vorname und Nachmame dürfen nicht beide l sein");
+						jPanel3.add(namesErrorLabel, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
+						
+					}
+					{
+						namesErrorLabel = new JLabel(errorIcon);
+						namesErrorLabel.setVisible(false);
+						namesErrorLabel.setToolTipText("Vorname und Nachmame dürfen nicht beide l sein");
+						jPanel3.add(namesErrorLabel, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
+						
+					}
+					{
+						eMailErrorLabel = new JLabel(errorIcon);
+						eMailErrorLabel.setVisible(false);
+						eMailErrorLabel.setToolTipText("E-Mail Address must be valid");
+						jPanel3.add(eMailErrorLabel, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
+					}
+					{
+						telOfficeErrorLabel = new JLabel(errorIcon);
+						telOfficeErrorLabel.setVisible(false);
+						telOfficeErrorLabel.setToolTipText("Office Tel must be valid");
+						jPanel3.add(telOfficeErrorLabel, new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
+					}
+					{
+						telMobileErrorLabel = new JLabel(errorIcon);
+						telMobileErrorLabel.setVisible(false);
+						telMobileErrorLabel.setToolTipText("Mobil Tel must be valid");
+						jPanel3.add(telMobileErrorLabel, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
+					}					
+					{
+						birthDayErrorLabel = new JLabel(errorIcon);
+						birthDayErrorLabel.setVisible(false);
+						birthDayErrorLabel.setToolTipText("Mobil Tel must be valid");
+						jPanel3.add(birthDayErrorLabel, new GridBagConstraints(2, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
+					}			
+					
 					{
 						saveButton = new JButton();
 						jPanel3.add(saveButton, new GridBagConstraints(0, 10, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
@@ -315,5 +375,83 @@ public class ContactJFrame extends javax.swing.JFrame {
 		}
 		
 	}
+	
+	
+	//validate
+	private boolean hasAtLeastOneName () {
+		if (txtName.getText().equals("") && txtFirstName.getText().equals("")){
+			namesErrorLabel.setVisible(true);
+			return false;
+		}else{
+			namesErrorLabel.setVisible(false);
+			return true;			
+		}
+	}
+
+	private boolean isValidEmail () {
+		if (Validator.isValidEmail(txtEMail.getText())) {
+			eMailErrorLabel.setVisible(false);
+			return true;
+		}else{
+			eMailErrorLabel.setVisible(true);
+			return false;		
+		}
+	}
+
+
+	private boolean validOffTelNr () {
+		if (Validator.isValidTelNr(txtTelOffice.getText())) {
+			telOfficeErrorLabel.setVisible(false);
+			return true;
+		}else{
+			telOfficeErrorLabel.setVisible(true);
+			return false;		
+		}
+	}
+
+	private boolean validMobileTelNr () {
+		if (Validator.isValidTelNr(txtTelMobil.getText())) {
+			telMobileErrorLabel.setVisible(false);
+			return true;
+		}else{
+			telMobileErrorLabel.setVisible(true);
+			return false;		
+		}
+	}
+
+	private boolean validBirthDate () {
+		if (Validator.isValidDate(txtBirthDay.getText())) {
+			birthDayErrorLabel.setVisible(false);
+			return true;
+		}else{
+			birthDayErrorLabel.setVisible(true);
+			return false;		
+		}
+	}
+
+	private void checkSaveable() {
+		Boolean isOk = hasAtLeastOneName();
+		isOk = isValidEmail() && isOk;
+		isOk = validOffTelNr() && isOk;
+		isOk = validMobileTelNr() && isOk;
+		isOk = validBirthDate() && isOk;
+
+		if (isOk) {
+			saveButton.setToolTipText("Save");
+			saveButton.setEnabled(true);					
+		}
+		else {
+			saveButton.setToolTipText("Remove Errors before Saving");
+			saveButton.setEnabled(false);		
+		}
+	}
+
+	private class CheckSaveableFocusListener extends FocusAdapter {
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			checkSaveable();
+		}	
+	}
+	
 }
 
