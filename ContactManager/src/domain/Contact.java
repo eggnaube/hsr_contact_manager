@@ -1,9 +1,12 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Observable;
 
-public class Contact extends Observable {
-	
+public class Contact extends Observable implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private boolean isBulkUpdating = false;
 	
 	private String name="";
