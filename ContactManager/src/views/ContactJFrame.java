@@ -26,7 +26,7 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import util.Validator;
+import util.ContactValidator;
 import viewModels.ContactListModel;
 
 import domain.Contact;
@@ -389,7 +389,7 @@ public class ContactJFrame extends javax.swing.JFrame {
 	}
 
 	private boolean isValidEmail () {
-		if (Validator.isValidEmail(txtEMail.getText())) {
+		if (ContactValidator.isValidEmail(txtEMail.getText())) {
 			eMailErrorLabel.setVisible(false);
 			return true;
 		}else{
@@ -400,7 +400,7 @@ public class ContactJFrame extends javax.swing.JFrame {
 
 
 	private boolean validOffTelNr () {
-		if (Validator.isValidTelNr(txtTelOffice.getText())) {
+		if (ContactValidator.isValidTelNr(txtTelOffice.getText())) {
 			telOfficeErrorLabel.setVisible(false);
 			return true;
 		}else{
@@ -410,7 +410,7 @@ public class ContactJFrame extends javax.swing.JFrame {
 	}
 
 	private boolean validMobileTelNr () {
-		if (Validator.isValidTelNr(txtTelMobil.getText())) {
+		if (ContactValidator.isValidTelNr(txtTelMobil.getText())) {
 			telMobileErrorLabel.setVisible(false);
 			return true;
 		}else{
@@ -420,7 +420,7 @@ public class ContactJFrame extends javax.swing.JFrame {
 	}
 
 	private boolean validBirthDate () {
-		if (Validator.isValidDate(txtBirthDay.getText())) {
+		if (ContactValidator.isValidDate(txtBirthDay.getText())) {
 			birthDayErrorLabel.setVisible(false);
 			return true;
 		}else{

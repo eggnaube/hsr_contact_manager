@@ -1,12 +1,12 @@
 package guiUtil;
 
-import util.Validator;
+import util.ContactValidator;
 
 public class ErrorTextFieldTelNrValidator implements IErrorTextFieldValidator {
 
 	@Override
 	public boolean validate(String currentText) {
-		return Validator.isValidTelNr(currentText);
+		return ContactValidator.isValidTelNr(currentText);
 	}
 
 }

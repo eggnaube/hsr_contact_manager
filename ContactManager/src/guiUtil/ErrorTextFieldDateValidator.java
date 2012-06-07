@@ -1,12 +1,12 @@
 package guiUtil;
 
-import util.Validator;
+import util.ContactValidator;
 
 public class ErrorTextFieldDateValidator implements IErrorTextFieldValidator {
 
 	@Override
 	public boolean validate(String currentText) {
-		return Validator.isValidDate(currentText);
+		return ContactValidator.isValidDate(currentText);
 	}
 
 }
