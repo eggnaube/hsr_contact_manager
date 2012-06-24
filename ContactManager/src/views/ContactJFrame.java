@@ -182,7 +182,13 @@ public class ContactJFrame extends javax.swing.JFrame {
 	}
 	
 	private void newButtonActionPerformed(ActionEvent evt) {
-		//TODO: implement
+		Contact contact = new Contact();
+		contact.addObserver(contactChangedObserver);
+		contactStore.addContact(contact);
+		int index = contactJListModel.getSize()-1;
+		contactJList.setSelectedIndex(index);
+		contactJListModel.propagateUpdate(index);
+		updateDetailPanel();
 	}
 	
 	private void saveButtonActionPerformed(Contact contact) {

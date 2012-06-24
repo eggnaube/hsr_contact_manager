@@ -13,7 +13,7 @@ public class Application {
 			public void run() {
 				//Create Model
 				ContactStore contactStore = new ContactStore();
-				contactStore.addContact("Müller", "Hans", "test@testmail.com", "0121", "654556", "12.12.2000");
+				contactStore.addContact("MÃ¼ller", "Hans", "test@testmail.com", "0121", "654556", "12.12.2000");
 				//Show two Views: Editing in Detail Frames; Fully Synchronized
 				new ContactJFrame(contactStore);
 				new ContactJFrame(contactStore);

@@ -46,6 +46,14 @@ public class ContactStore extends Observable implements Observer {
 		saveList(contactList);
 		return succeeded;
 	}
+	
+	public boolean addContact(Contact contact) {
+		contact.addObserver(this);
+		boolean succeeded = contactList.add(contact);
+		doNotify();
+		saveList(contactList);
+		return succeeded;
+	}
 
 	public int getLength(){
 		return contactList.size();
@@ -64,6 +72,7 @@ public class ContactStore extends Observable implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		setChanged();
 		notifyObservers(arg0);
+		saveList(contactList);
 	}
 
 	private List<Contact> readList()

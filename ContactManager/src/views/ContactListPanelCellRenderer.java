@@ -41,7 +41,7 @@ public class ContactListPanelCellRenderer implements ListCellRenderer {
 
 
 		public void showContact(Contact contact, boolean isSelected) {
-			topLabel.setText(contact.getName());
+			topLabel.setText(contact.getName().equals("") == true ? "«New Contact»": contact.getName());
 			bottomLabel.setText(contact.getFirstName());
 			if(isSelected){
 				this.setBackground(Color.YELLOW);
