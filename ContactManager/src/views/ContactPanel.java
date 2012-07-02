@@ -6,6 +6,8 @@ import java.awt.Insets;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,6 +17,7 @@ import javax.swing.JTextField;
 import util.ContactValidator;
 
 import domain.Contact;
+import java.awt.Font;
 
 public class ContactPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +56,7 @@ public class ContactPanel extends JPanel {
 	public ContactPanel() {
 		
 		GridBagLayout jPanel3Layout = new GridBagLayout();
-		setPreferredSize(new java.awt.Dimension(300, 212));
+		setPreferredSize(new java.awt.Dimension(300, 300));
 		jPanel3Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
 		jPanel3Layout.rowHeights = new int[] {12, 12, 12, 12, 12, 12, 12, 12};
 		jPanel3Layout.columnWeights = new double[] {0.1, 0.1};
@@ -61,6 +64,7 @@ public class ContactPanel extends JPanel {
 		setLayout(jPanel3Layout);
 		{
 			lblContact = new JLabel();
+			lblContact.setFont(new Font("Lucida Grande", Font.BOLD, 16));
 			add(lblContact, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 2, 2), 0, 0));
 			lblContact.setText("Contact");
 		}
@@ -117,6 +121,19 @@ public class ContactPanel extends JPanel {
 			txtTelOffice.addFocusListener(saveCecker);
 			add(txtTelOffice, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 2, 2), 0, 0));
 			txtTelOffice.setEnabled(true);
+			txtTelOffice.addKeyListener(new KeyListener() {
+				
+				@Override
+				public void keyTyped(KeyEvent e) {}
+				
+				@Override
+				public void keyReleased(KeyEvent e) {
+					validOffTelNr();
+				}
+				
+				@Override
+				public void keyPressed(KeyEvent e) {}
+			});
 		}
 		{
 			txtTelMobil = new JTextField();
@@ -133,14 +150,14 @@ public class ContactPanel extends JPanel {
 		{
 			namesErrorLabel = new JLabel(errorIcon);
 			namesErrorLabel.setVisible(false);
-			namesErrorLabel.setToolTipText("Vorname und Nachmame dürfen nicht beide l sein");
-			add(namesErrorLabel, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 2, 2), 0, 0));
+			namesErrorLabel.setToolTipText("Vorname und Nachmame dÃ¼rfen nicht beide l sein");
+			add(namesErrorLabel, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE, new Insets(4, 2, 2, 2), 0, 0));
 
 		}
 		{
 			namesErrorLabel = new JLabel(errorIcon);
 			namesErrorLabel.setVisible(false);
-			namesErrorLabel.setToolTipText("Vorname und Nachmame dürfen nicht beide l sein");
+			namesErrorLabel.setToolTipText("Vorname und Nachmame dÃ¼rfen nicht beide l sein");
 			add(namesErrorLabel, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 2, 2), 0, 0));
 
 		}
@@ -165,7 +182,7 @@ public class ContactPanel extends JPanel {
 		{
 			birthDayErrorLabel = new JLabel(errorIcon);
 			birthDayErrorLabel.setVisible(false);
-			birthDayErrorLabel.setToolTipText("Mobil Tel must be valid");
+			birthDayErrorLabel.setToolTipText("Birth date must be valid");
 			add(birthDayErrorLabel, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 2, 2), 0, 0));
 		}			
 
