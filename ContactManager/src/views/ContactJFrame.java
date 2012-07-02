@@ -58,6 +58,8 @@ public class ContactJFrame extends javax.swing.JFrame {
 		initGUI();
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		getRootPane().setDefaultButton(saveButton);
 	}
 	
 	private void initGUI() {
@@ -192,9 +194,11 @@ public class ContactJFrame extends javax.swing.JFrame {
 	}
 	
 	private void saveButtonActionPerformed(Contact contact) {
-		contact.startBulkUpdate();
-		contact = jPanel3.getContact();
-		contact.completeBulkUpdate();		
+		if(null != contact) {
+			contact.startBulkUpdate();
+			contact = jPanel3.getContact();
+			contact.completeBulkUpdate();
+		}
 	}
 
 	private class ContactChangedObserver implements Observer {

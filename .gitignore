@@ -3,3 +3,7 @@
 /.metadata
 /old
 store.sav
+/ContactManager/nbproject/private/
+ContactManager/nbproject
+ContactManager/build.xml
+ContactManager/manifest.mf
