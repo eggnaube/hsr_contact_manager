@@ -14,7 +14,12 @@ public class Application {
 			public void run() {
 				//Create Model
 				ContactStore contactStore = new ContactStore();
-				contactStore.addContact("Müller", "Hans", "test@testmail.com", "0121", "654556", "12.12.2000");
+				if(0 == contactStore.getLength()) {
+					contactStore.addContact("Rüdisüli", "Marc", "marc@testmail.com", "0121", "654556", "12.12.2000");
+					contactStore.addContact("Eggnauer", "Benno", "benno@testmail.com", "0121", "654556", "12.12.2001");
+					contactStore.addContact("Müller", "Hans", "test@testmail.com", "0121", "654556", "12.12.2002");
+					contactStore.addContact("Müller", "Hans", "test@testmail.com", "0121", "654556", "12.12.2002");
+				}
 				//Show two Views: Editing in Detail Frames; Fully Synchronized
 				ContactJFrame f1 = new ContactJFrame(contactStore);
 				ContactJFrame f2 = new ContactJFrame(contactStore);

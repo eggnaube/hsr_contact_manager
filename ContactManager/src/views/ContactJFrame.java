@@ -166,7 +166,10 @@ public class ContactJFrame extends javax.swing.JFrame {
 			contact.addObserver(contactChangedObserver);
 		
 		jPanel3.setContact(contact);
+		
+		contactJList.revalidate();
 		contactJList.repaint();
+		
 		updateListButtons(contactJList.getSelectedValue() != null);
 	}
 	

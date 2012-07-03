@@ -21,8 +21,8 @@ import java.awt.Font;
 
 public class ContactPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	
-	//Label
+
+	// Label
 	private JLabel lblContact;
 	private JLabel lblName;
 	private JLabel lblFirstName;
@@ -31,7 +31,7 @@ public class ContactPanel extends JPanel {
 	private JLabel lblTelMobil;
 	private JLabel lblBirthDay;
 
-	//textfield
+	// textfield
 	private JTextField txtName;
 	private JTextField txtFirstName;
 	private JTextField txtEMail;
@@ -46,155 +46,194 @@ public class ContactPanel extends JPanel {
 	private JLabel birthDayErrorLabel;
 
 	private Contact contact;
-	
 
-	private final static ImageIcon errorIcon = new ImageIcon(ContactJFrame.class.getResource("/com/sun/java/swing/plaf/windows/icons/Error.gif"));
-	private FocusListener saveCecker =  new CheckSaveableFocusListener();
-
-
+	private final static ImageIcon errorIcon = new ImageIcon(
+			ContactJFrame.class
+					.getResource("/com/sun/java/swing/plaf/windows/icons/Error.gif"));
+	private FocusListener saveCecker = new CheckSaveableFocusListener();
 
 	public ContactPanel() {
-		
+
 		GridBagLayout jPanel3Layout = new GridBagLayout();
 		setPreferredSize(new java.awt.Dimension(300, 300));
-		jPanel3Layout.rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1};
-		jPanel3Layout.rowHeights = new int[] {44, 44, 44, 44, 44, 44, 44, 44};
-		jPanel3Layout.columnWeights = new double[] {0.0, 0.1};
-		jPanel3Layout.columnWidths = new int[] {10, 10, 44};
+		jPanel3Layout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, 0.1 };
+		jPanel3Layout.rowHeights = new int[] { 44, 44, 44, 44, 44, 44, 44, 44 };
+		jPanel3Layout.columnWeights = new double[] { 0.0, 0.1 };
+		jPanel3Layout.columnWidths = new int[] { 10, 10, 44 };
 		setLayout(jPanel3Layout);
 		{
 			lblContact = new JLabel();
 			lblContact.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-			add(lblContact, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(lblContact, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			lblContact.setText("Contact");
 		}
 		{
 			lblName = new JLabel();
-			add(lblName, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(lblName, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			lblName.setText("Name:");
 		}
 		{
 			lblFirstName = new JLabel();
-			add(lblFirstName, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(lblFirstName, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			lblFirstName.setText("First Name:");
 		}
 		{
 			lblEMail = new JLabel();
-			add(lblEMail, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(lblEMail, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			lblEMail.setText("E-Mail:");
 		}
 		{
 			lblTelOffice = new JLabel();
-			add(lblTelOffice, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(lblTelOffice, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			lblTelOffice.setText("TelOffice:");
-		}		
+		}
 		{
 			lblTelMobil = new JLabel();
-			add(lblTelMobil, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(lblTelMobil, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			lblTelMobil.setText("Mobil:");
 		}
 		{
-			lblBirthDay= new JLabel();
-			add(lblBirthDay, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 5, 5), 0, 0));
+			lblBirthDay = new JLabel();
+			add(lblBirthDay, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			lblBirthDay.setText("Birth Day:");
 		}
 		{
 			txtName = new JTextField();
 			txtName.addFocusListener(saveCecker);
-			add(txtName, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(txtName, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			txtName.setEnabled(true);
 		}
 		{
 			txtFirstName = new JTextField();
 			txtFirstName.addFocusListener(saveCecker);
-			add(txtFirstName, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(txtFirstName, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			txtFirstName.setEnabled(true);
 		}
 		{
 			txtEMail = new JTextField();
 			txtEMail.addFocusListener(saveCecker);
-			add(txtEMail, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(txtEMail, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			txtEMail.setEnabled(true);
 		}
 		{
 			txtTelOffice = new JTextField();
 			txtTelOffice.addFocusListener(saveCecker);
-			add(txtTelOffice, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(txtTelOffice, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			txtTelOffice.setEnabled(true);
 			txtTelOffice.addKeyListener(new KeyListener() {
-				
+
 				@Override
-				public void keyTyped(KeyEvent e) {}
-				
+				public void keyTyped(KeyEvent e) {
+				}
+
 				@Override
 				public void keyReleased(KeyEvent e) {
 					validOffTelNr();
 				}
-				
+
 				@Override
-				public void keyPressed(KeyEvent e) {}
+				public void keyPressed(KeyEvent e) {
+				}
 			});
 		}
 		{
 			txtTelMobil = new JTextField();
 			txtTelMobil.addFocusListener(saveCecker);
-			add(txtTelMobil, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(txtTelMobil, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			txtTelMobil.setEnabled(true);
 		}
 		{
 			txtBirthDay = new JTextField();
 			txtBirthDay.addFocusListener(saveCecker);
-			add(txtBirthDay, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(4, 2, 5, 5), 0, 0));
+			add(txtBirthDay, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+					new Insets(4, 2, 5, 5), 0, 0));
 			txtBirthDay.setEnabled(true);
 		}
 		{
 			namesErrorLabel = new JLabel(errorIcon);
 			namesErrorLabel.setVisible(false);
-			namesErrorLabel.setToolTipText("Vorname und Nachmame dürfen nicht beide l sein");
-			add(namesErrorLabel, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE, new Insets(4, 2, 5, 0), 0, 0));
+			namesErrorLabel
+					.setToolTipText("Vorname und Nachmame dürfen nicht beide l sein");
+			add(namesErrorLabel, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
+					GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE,
+					new Insets(4, 2, 5, 0), 0, 0));
 
 		}
 		{
 			namesErrorLabel = new JLabel(errorIcon);
 			namesErrorLabel.setVisible(false);
-			namesErrorLabel.setToolTipText("Vorname und Nachmame dürfen nicht beide l sein");
-			add(namesErrorLabel, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 0), 0, 0));
+			namesErrorLabel
+					.setToolTipText("Vorname und Nachmame dürfen nicht beide l sein");
+			add(namesErrorLabel, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 0), 0, 0));
 
 		}
 		{
 			eMailErrorLabel = new JLabel(errorIcon);
 			eMailErrorLabel.setVisible(false);
 			eMailErrorLabel.setToolTipText("E-Mail Address must be valid");
-			add(eMailErrorLabel, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 0), 0, 0));
+			add(eMailErrorLabel, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 0), 0, 0));
 		}
 		{
 			telOfficeErrorLabel = new JLabel(errorIcon);
 			telOfficeErrorLabel.setVisible(false);
 			telOfficeErrorLabel.setToolTipText("Office Tel must be valid");
-			add(telOfficeErrorLabel, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 0), 0, 0));
+			add(telOfficeErrorLabel, new GridBagConstraints(2, 4, 1, 1, 0.0,
+					0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 0), 0, 0));
 		}
 		{
 			telMobileErrorLabel = new JLabel(errorIcon);
 			telMobileErrorLabel.setVisible(false);
 			telMobileErrorLabel.setToolTipText("Mobil Tel must be valid");
-			add(telMobileErrorLabel, new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 0), 0, 0));
-		}					
+			add(telMobileErrorLabel, new GridBagConstraints(2, 5, 1, 1, 0.0,
+					0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 0), 0, 0));
+		}
 		{
 			birthDayErrorLabel = new JLabel(errorIcon);
 			birthDayErrorLabel.setVisible(false);
 			birthDayErrorLabel.setToolTipText("Birth date must be valid");
-			add(birthDayErrorLabel, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(4, 2, 5, 0), 0, 0));
-		}			
+			add(birthDayErrorLabel, new GridBagConstraints(2, 6, 1, 1, 0.0,
+					0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(4, 2, 5, 0), 0, 0));
+		}
 
 	}
 
-
-
-	public void setContact(Contact contact)
-	{
+	public void setContact(Contact contact) {
 		this.contact = contact;
 
-		if (contact == null){
+		if (contact == null) {
 
 			txtName.setText("");
 			txtFirstName.setText("");
@@ -203,8 +242,7 @@ public class ContactPanel extends JPanel {
 			txtTelMobil.setText("");
 			txtBirthDay.setText("");
 
-		} 
-		else {
+		} else {
 			txtName.setText(contact.getName());
 			txtFirstName.setText(contact.getFirstName());
 			txtEMail.setText(contact.geteMail());
@@ -212,10 +250,11 @@ public class ContactPanel extends JPanel {
 			txtTelMobil.setText(contact.getTelMobil());
 			txtBirthDay.setText(contact.getBirthDay());
 		}
+		
+		checkSaveable();
 	}
 
-	public Contact getContact()
-	{
+	public Contact getContact() {
 		contact.setName(txtName.getText());
 		contact.setFirstName(txtFirstName.getText());
 		contact.seteMail(txtEMail.getText());
@@ -226,57 +265,54 @@ public class ContactPanel extends JPanel {
 		return contact;
 	}
 
-
-
-	//validate
-	private boolean hasAtLeastOneName () {
-		if (txtName.getText().equals("") && txtFirstName.getText().equals("")){
+	// validate
+	private boolean hasAtLeastOneName() {
+		if (txtName.getText().equals("") && txtFirstName.getText().equals("")) {
 			namesErrorLabel.setVisible(true);
 			return false;
-		}else{
+		} else {
 			namesErrorLabel.setVisible(false);
-			return true;			
+			return true;
 		}
 	}
 
-	private boolean isValidEmail () {
+	private boolean isValidEmail() {
 		if (ContactValidator.isValidEmail(txtEMail.getText())) {
 			eMailErrorLabel.setVisible(false);
 			return true;
-		}else{
+		} else {
 			eMailErrorLabel.setVisible(true);
-			return false;		
+			return false;
 		}
 	}
 
-
-	private boolean validOffTelNr () {
+	private boolean validOffTelNr() {
 		if (ContactValidator.isValidTelNr(txtTelOffice.getText())) {
 			telOfficeErrorLabel.setVisible(false);
 			return true;
-		}else{
+		} else {
 			telOfficeErrorLabel.setVisible(true);
-			return false;		
+			return false;
 		}
 	}
 
-	private boolean validMobileTelNr () {
+	private boolean validMobileTelNr() {
 		if (ContactValidator.isValidTelNr(txtTelMobil.getText())) {
 			telMobileErrorLabel.setVisible(false);
 			return true;
-		}else{
+		} else {
 			telMobileErrorLabel.setVisible(true);
-			return false;		
+			return false;
 		}
 	}
 
-	private boolean validBirthDate () {
+	private boolean validBirthDate() {
 		if (ContactValidator.isValidDate(txtBirthDay.getText())) {
 			birthDayErrorLabel.setVisible(false);
 			return true;
-		}else{
+		} else {
 			birthDayErrorLabel.setVisible(true);
-			return false;		
+			return false;
 		}
 	}
 
@@ -295,7 +331,7 @@ public class ContactPanel extends JPanel {
 		@Override
 		public void focusLost(FocusEvent arg0) {
 			checkSaveable();
-		}	
+		}
 	}
 
 }

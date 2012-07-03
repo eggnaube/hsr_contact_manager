@@ -72,7 +72,7 @@ public class MultiEditContactDetailJFrame extends javax.swing.JFrame implements 
 		try {
 			setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 			BorderLayout thisLayout = new BorderLayout();
-			this.setTitle("JoDo: Edit ToDo");
+			this.setTitle("Edit Contact");
 			getContentPane().setLayout(thisLayout);
 			this.setMinimumSize(new Dimension(400, 400));
 			jPanel3 = new ContactPanel();
