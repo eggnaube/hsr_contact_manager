@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import domain.Contact;
+import java.awt.Dimension;
 
 public class MultiEditContactDetailJFrame extends javax.swing.JFrame implements Observer {
 	
@@ -73,7 +74,7 @@ public class MultiEditContactDetailJFrame extends javax.swing.JFrame implements 
 			BorderLayout thisLayout = new BorderLayout();
 			this.setTitle("JoDo: Edit ToDo");
 			getContentPane().setLayout(thisLayout);
-			this.setMinimumSize(new java.awt.Dimension(300, 200));
+			this.setMinimumSize(new Dimension(400, 400));
 			jPanel3 = new ContactPanel();
 			getContentPane().add(jPanel3, BorderLayout.CENTER);
 			

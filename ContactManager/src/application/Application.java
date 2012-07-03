@@ -16,8 +16,11 @@ public class Application {
 				ContactStore contactStore = new ContactStore();
 				contactStore.addContact("Müller", "Hans", "test@testmail.com", "0121", "654556", "12.12.2000");
 				//Show two Views: Editing in Detail Frames; Fully Synchronized
-				new ContactJFrame(contactStore);
-				new ContactJFrame(contactStore);
+				ContactJFrame f1 = new ContactJFrame(contactStore);
+				ContactJFrame f2 = new ContactJFrame(contactStore);
+				
+				f1.setLocation(50, 100);
+				f2.setLocation(100, 150);
 			}
 		});
 	}
